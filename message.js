@@ -2,12 +2,12 @@ const Command = require("./command");
 
 class Message {
    // Write code here!
-      constructor(name) {
+      constructor(name, commands) {
         this.name = name;
         if (!name) {
           throw Error("Message name required.");
         }
-        // this.value = value;
+        this.commands = [commands]
       }
     
   }

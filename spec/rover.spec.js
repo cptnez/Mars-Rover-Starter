@@ -8,6 +8,10 @@ const Command = require('../command.js');
 
 describe("Rover class", function() {
 
+// TEST 7
+// “constructor sets position and default values for mode and generatorWatts”.
+//  Refer to the Rover Class description above for these default values.
+
     // it('constructor sets position and default values for mode and geneatorWatts', function() {
     //   const obj = new Rover();
     //     expect(obj.position).toBe();
@@ -15,12 +19,17 @@ describe("Rover class", function() {
     //     expect(obj.generatorWatts).toBe(110);
     // });
 
+// TEST 8
+
     // it('response returned by receiveMessage contains the name of the message', function() {
     //   expect(new Rover().receiveMessage()).toBe(Message.name)
-    // })
+    // });
 
-    // it ('response returned by receiveMessage includes two results if two commands are sent in the message', function() {
-    //   const obj2 = new Rover().receiveMessage();
+// TEST 9
+
+    it ('response returned by receiveMessage includes two results if two commands are sent in the message', function() {
+      const obj = new Rover.receiveMessage(1,2);
+      expect(obj.
 
     // })
   // 7 tests here!

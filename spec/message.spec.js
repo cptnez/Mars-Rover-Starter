@@ -14,7 +14,7 @@ describe("Message class", function() {
 //The description is “constructor sets name”.
 //The test confirms that the constructor in the Message class correctly sets the name property in a new message object.
 
- it('constructor sets name', function () {
+ it('constructor sets messageName', function () {
     const obj = new Message(1, 2);
     expect(obj.name).toEqual(1);
  })
@@ -26,7 +26,7 @@ describe("Message class", function() {
 
  it('contains a commands array passed into the constructor as the 2nd argument', function () {
   const obj = new Message(1, 2);
-  expect(obj.commands).toEqual(2)
+  expect(obj.commands).toEqual([2])
  });
 
 });
