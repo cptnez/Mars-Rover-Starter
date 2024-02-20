@@ -2,12 +2,14 @@ const Command = require("./command");
 
 class Message {
    // Write code here!
-      constructor(name, commands) {
-        this.name = String(name);
+      constructor(name) {
+        this.name = name;
         if (!name) {
-          throw Error("Name required.");
+          throw Error("Message name required.");
         }
-        this.commands = Command[commands];
+        // this.value = value;
       }
-}
+    
+  }
+
 module.exports = Message;

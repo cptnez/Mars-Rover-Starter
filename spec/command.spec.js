@@ -11,12 +11,12 @@ describe("Command class", function() {
 
   it('verifies that the constructor sets the commandType property in the NEW object', function () {
     const obj = new Command(1, 2);
-  expect(obj.commandType).toBe(1);
+    expect(obj.commandype).toBe(1);
   });
 
   it('verifies that the constructor sets the value property in the NEW object', function () {
     const obj = new Command(1, 2);
-  expect(obj.value).toBe(2);
+    expect(obj.value).toBe(2);
   });
 
 });

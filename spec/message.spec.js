@@ -5,19 +5,28 @@ const Command = require('../command.js');
 //       However, do NOT edit the grading tests for any reason and make sure to un-comment out your code to get the autograder to pass.
 
 describe("Message class", function() {
+// TEST 4
+  it('throws error if a name is NOT passed into the constructor as the first parameter', function () {
+      expect( function() { new Message();}).toThrow(new Error('Message name required.'));
+  });
 
-    it("throws error if name is NOT passed into constructor as the first parameter", function() {
-        expect( function() { new Message();}).toThrow(new Error('Name required.'));
-      });
-    
-    it("constructor sets name property as a string", function() {
-        const obj = new Message(1, 2);
-        expect(obj.name).toBe("1");
-    });
+// TEST 5
+//The description is “constructor sets name”.
+//The test confirms that the constructor in the Message class correctly sets the name property in a new message object.
 
-    it('verifies that the constructor sets the commands property in the NEW object as an array', function () {
-        const obj = new Message(1, 2);
-      expect(obj.commands).toBe[Command];
-      });
-    
+ it('constructor sets name', function () {
+    const obj = new Message(1, 2);
+    expect(obj.name).toEqual(1);
+ })
+
+ // TEST 6
+ // The description reads “contains a commands array passed into the constructor as the 2nd argument”.
+ // This test confirms that the commands property of a new message object
+ // contains the data passed in from the Message(name, commands) call.
+
+ it('contains a commands array passed into the constructor as the 2nd argument', function () {
+  const obj = new Message(1, 2);
+  expect(obj.commands).toEqual(2)
+ });
+
 });
