@@ -9,22 +9,6 @@ describe("Command class", function() {
     expect( function() { new Command();}).toThrow(new Error('Command type required.'));
   });
 
-
-  // 1. The test inspects the contructor in the Command class
-  // 2  The test verifies that the constructor sets the commandType property in the new object
-
-  // class SomeClass {
-  //  constructor(a, b) {
-  //     this.a = a;
-  //    this.b = b;
-  //  }
-  //}
-
-  // it('works', () => {
-  // const obj = new SomeClass(1, 2);
-  // expect(obj.a).toBe(1);
-  // expect(obj.b).toBe(2);
-
   it('verifies that the constructor sets the commandType property in the NEW object', function () {
     const obj = new Command(1, 2);
   expect(obj.commandType).toBe(1);
