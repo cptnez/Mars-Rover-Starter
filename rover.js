@@ -10,20 +10,29 @@ class Rover {
    }
    receiveMessage(message) {
       message = Message;
-      let commands =  [Command]
-       
-         if (message.commands.length = 2) {
-            return {
-               name: Message.name,
-               results: [commands[0], commands[1]]
-            }
-         }
+      let messageCommands = Message.commands
 
-
-      return {
-         name: Message.name,
-         results: [commands]
-      };
+      // if (message.length == 2) {
+      //    return {
+      //       name: message.name,
+      //       results: [message.commands, message.commands]
+      //    }
+      // } else {
+      //    return {
+      //       name: message.name,
+      //       results: [message.commands] 
+      // }
+   // }
+      if (message.commands = 'STATUS_CHECK') {
+         return {
+            name: message.name,
+            results: 
+            {
+               completed: Boolean(),
+               roverStatus: {mode: '', generatorWatts: Number(), position: Number() }
+            } 
+      }
+      }
    }
 };
 

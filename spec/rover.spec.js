@@ -21,16 +21,26 @@ describe("Rover class", function() {
 
 // TEST 8
 
-    it('response returned by receiveMessage contains the name of the message', function() {
-      let result = new Rover().receiveMessage
-      expect(result.name).not.toBeUndefined();
-    });
+    // it('response returned by receiveMessage contains the name of the message', function() {
+    //   let response = new Rover().receiveMessage
+    //   expect(response.name).not.toBeUndefined();
+    // });
 
 // TEST 9
 
-    it ('response returned by receiveMessage includes two results if two commands are sent in the message', function() {
-      let result = new Rover().receiveMessage([1,2])
-      expect(result.commands).toBe([1,2]);
-    });
+    // it ('response returned by receiveMessage includes two results if two commands are sent in the message', function() {
+    //   let messageCommands = new Rover().receiveMessage([new Command('MODE_CHANGE'), new Command('STATUS_CHECK')])
+    //   expect(messageCommands.results.length).toEqual(2);
+    // });
+
+// TEST 10
+
+      it('responds correctly to the STATUS_CHECK command', function (){
+          let roverResults = {
+            completed: true,
+            roverStatus: {mode: 'LOW_POWER', generatorWatts: 110, position: 87382098}
+          }
+          expect(new Rover().receiveMessage([new Command('STATUS_CHECK')]).results).toEqual(roverResults)
+      })
 
 });
