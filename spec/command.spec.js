@@ -15,7 +15,7 @@ describe("Command class", function() {
 
   it('constructor sets commandType', function () {
     let obj = new Command(1,2);
-    expect(obj.commandType).toEqual(1)
+    expect(obj.commandType).toEqual(1);
   });
 
   // TEST 3

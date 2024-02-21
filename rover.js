@@ -8,8 +8,22 @@ class Rover {
       this.mode = mode;
       this.generatorWatts = generatorWatts;
    }
-   receiveMessage() {
-      return Message.name
+   receiveMessage(message) {
+      message = Message;
+      let commands =  [Command]
+       
+         if (message.commands.length = 2) {
+            return {
+               name: Message.name,
+               results: [commands[0], commands[1]]
+            }
+         }
+
+
+      return {
+         name: Message.name,
+         results: [commands]
+      };
    }
 };
 

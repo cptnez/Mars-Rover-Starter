@@ -21,17 +21,16 @@ describe("Rover class", function() {
 
 // TEST 8
 
-    // it('response returned by receiveMessage contains the name of the message', function() {
-    //   expect(new Rover().receiveMessage()).toBe(Message.name)
-    // });
+    it('response returned by receiveMessage contains the name of the message', function() {
+      let result = new Rover().receiveMessage
+      expect(result.name).not.toBeUndefined();
+    });
 
 // TEST 9
 
     it ('response returned by receiveMessage includes two results if two commands are sent in the message', function() {
-      const obj = new Rover.receiveMessage(1,2);
-      expect(obj.
-
-    // })
-  // 7 tests here!
+      let result = new Rover().receiveMessage([1,2])
+      expect(result.commands).toBe([1,2]);
+    });
 
 });
