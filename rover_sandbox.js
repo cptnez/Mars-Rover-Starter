@@ -49,4 +49,6 @@ class Rover {
    
 };
 
+
+console.log(new Rover('Two', new Command('STATUS_CHECK')))
 module.exports = Rover;
