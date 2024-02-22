@@ -8,7 +8,7 @@ const Command = require('../command.js');
 
 describe("Rover class", function() {
 
-// TEST 7
+// TEST 7-FINISHED
 // “constructor sets position and default values for mode and generatorWatts”.
 //  Refer to the Rover Class description above for these default values.
 
@@ -19,28 +19,41 @@ describe("Rover class", function() {
     //     expect(obj.generatorWatts).toBe(110);
     // });
 
-// TEST 8
+// TEST 8-FINISHED
 
     // it('response returned by receiveMessage contains the name of the message', function() {
     //   let response = new Rover().receiveMessage
     //   expect(response.name).not.toBeUndefined();
     // });
 
-// TEST 9
+// TEST 9-May need more refining, hung up on what is actaully being evaluated
 
     // it ('response returned by receiveMessage includes two results if two commands are sent in the message', function() {
     //   let messageCommands = new Rover().receiveMessage([new Command('MODE_CHANGE'), new Command('STATUS_CHECK')])
     //   expect(messageCommands.results.length).toEqual(2);
     // });
 
-// TEST 10
+// TEST 10-Deep equality? It is passing but it is also a hardcoded test
+// 1. For the STATUS_CHECK command, receiveMessage(message).results includes a roverStatus object
+//    describing the current state of the rover object — mode, generatorWatts, and position. 
+//    The test should check each of these for accuracy.
+// 2. See the Rover Command Types table for more details.
 
       it('responds correctly to the STATUS_CHECK command', function (){
-          let roverResults = {
-            completed: true,
-            roverStatus: {mode: 'LOW_POWER', generatorWatts: 110, position: 87382098}
-          }
-          expect(new Rover().receiveMessage([new Command('STATUS_CHECK')]).results).toEqual(roverResults)
+       let message = new Rover().receiveMessage([new Command('STATUS_CHECK')]).results;
+       let roverCheck = [{completed: Boolean(), roverStatus: {mode: '', generatorWatts: Number(), position: Number()}}];
+       expect(message).toEqual(roverCheck);
+
       })
+
+// TEST 11
+// 1. The test should check the completed: property and rover mode for accuracy.
+// 2. The rover has two modes that can be passed as values to a mode change command: ‘LOW_POWER’ and ‘NORMAL’.
+
+  it('responds correctly to the MODE_CHANGE command', function () {
+    let messageCommand = new Rover().receiveMessage([new Command('MODE_CHANGE')]);
+    expect(messageCommand.results.completed).not.toBeUndefined();
+    // });
+  })
 
 });

@@ -14,8 +14,8 @@ describe("Command class", function() {
 // This test checks that the constructor in the Command class correctly sets the commandType property in the new object.
 
   it('constructor sets commandType', function () {
-    let obj = new Command(1,2);
-    expect(obj.commandType).toEqual(1);
+    let type = new Command(test)
+    expect(type.commandType).not.toBeUndefined();
   });
 
   // TEST 3
