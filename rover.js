@@ -22,11 +22,12 @@ class Rover {
                   roverStatus: {mode: this.mode , generatorWatts: this.generatorWatts , position: this.position}}
             ]
          }
+      } else {
+         return {
+         message: name,
+         results: commands
       }
-      // return {
-      //    message: name,
-      //    results: commands
-      // }
+   }
 
    }
 };
