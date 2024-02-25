@@ -7,46 +7,28 @@ class Rover {
       this.position = position;
       this.mode = mode;
       this.generatorWatts = generatorWatts;
-   }
-   receiveMessage(message) {
-      message = Message;
-      let messageCommands = Message.commands
-
-      // if (message.length == 2) {
-      //    return {
-      //       name: message.name,
-      //       results: [message.commands, message.commands]
-      //    }
-      // } else {
-      //    return {
-      //       name: message.name,
-      //       results: [message.commands] 
-      // }
-   // }
-      // if (message.commands = 'STATUS_CHECK') {
-         return {
-            name: message.name,
-            results: [
-            {
-               completed: Boolean(),
-               roverStatus: { mode: '', generatorWatts: Number(), position: Number() }
-            } 
-            ]
-      }
-      // }
-      // if (message.commands = 'MODE_CHANGE') {
-      //    return {
-      //       name: message.name,
-      //       results: [
-      //       {
-      //          completed: Boolean(),
-      //          roverStatus: { mode: '', generatorWatts: Number(), position: Number() }
-      //       } 
-      //       ]
-      // }
-      }
-
+   };
    
+   receiveMessage(Message) {
+      let name = Message.name
+      let commands = Message.commands
+
+      if (commands.indexOf(new Command('STATUS_CHECK'))) {
+         return {
+            message: name,
+            results: [
+               {
+                  completed: true,
+                  roverStatus: {mode: this.mode , generatorWatts: this.generatorWatts , position: this.position}}
+            ]
+         }
+      }
+      // return {
+      //    message: name,
+      //    results: commands
+      // }
+
+   }
 };
 
 module.exports = Rover;
