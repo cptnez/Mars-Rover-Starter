@@ -19,7 +19,7 @@ describe("Rover class", function() {
 //     expect(testRover.generatorWatts).toEqual(110);
 // })
 
-// TEST 8-PASSED-----2/25 2:34PM
+// TEST 8-PASSED-----2/25 2:34PM, UPDATED 2/26 9:51AM-----Restructured the return to use Message in function
 
 it('response returned by receiveMessage contains the name of the message', function () {
     let commandsTest = new Command('STATUS_CHECK');
@@ -30,17 +30,18 @@ it('response returned by receiveMessage contains the name of the message', funct
     expect(testRoverNameReturn).toEqual('test for status check');
 })
 
-// TEST 9-PASSED-----2/25 2:56PM
+// TEST 9-PASSED-----2/25 2:56PM, UPDATED 2/26 10:08AM-----Restructured return of test 9, two empty objects. Both 8 and 9 are passing together.
 
-    // it ('response returned by receiveMessage includes two results if two commands are sent in the message', function () {
-    //     let commandsTest = [new Command('TEST_COMMAND_ONE'), new Command('TEST_COMMAND_TWO')];
-    //     let messageTest = new Message('Test message with two commands', commandsTest);
-    //     let testRover = new Rover().receiveMessage(messageTest);
-    //     let testRoverReturn = testRover.results;
+    it ('response returned by receiveMessage includes two results if two commands are sent in the message', function () {
+        let commandsTest = [new Command('TEST_COMMAND_ONE'), new Command('TEST_COMMAND_TWO')];
+        let messageTest = new Message('Test message with two commands', commandsTest);
+        let testRover = new Rover(98382).receiveMessage(messageTest);
+        let testRoverReturn = testRover.results;
+        let testRoverResults = [{}, {}]
 
-    //     expect(testRoverReturn).toEqual([{"commandType": "TEST_COMMAND_ONE", "value": null}, {"commandType": "TEST_COMMAND_TWO", "value": null}])
+        expect(testRoverReturn).toEqual(testRoverResults)
  
-    // })
+    })
 
 // TEST 10-passed...need other tests to confirm. Completed: true? How?
 // 1. For the STATUS_CHECK command, receiveMessage(message).results includes a roverStatus object

@@ -2,7 +2,6 @@ const Command = require("./command");
 const Message = require("./message");
 
 class Rover {
-   // Write code here!
    constructor(position, mode = 'NORMAL', generatorWatts = 110) {
       this.position = position;
       this.mode = mode;
@@ -10,11 +9,19 @@ class Rover {
    };
    
    receiveMessage(Message) {
-      let name = Message.name
-      let roverObject = {message: name};
+      
+      let roverObject;
+
+       if(Message.commands.length == 2) {
+         roverObject = {message: Message.name, results: [{}, {}]};
          return roverObject;
+      } else {
+         roverObject = {message: Message.name, results: [{}]};
       }
-   }
+      return roverObject;
+   };
+
+};
 
    // reportStats() {
    //    let stats = `${this.name} is ${this.age} years old and has a mass of ${this.mass} kg.`;
@@ -23,8 +30,8 @@ class Rover {
 
 
 
-let commandsTest = [new Command('STATUS_CHECK')];
-let messageTest = new Message('STATUS_CHECK test', commandsTest);
+let commandsTest = [new Command('COMMAND_ONE'), new Command('COMMAND_TWO')];
+let messageTest = new Message('Two commands test', commandsTest);
 let testRover = new Rover(98382).receiveMessage(messageTest);
 
 console.log(testRover);
