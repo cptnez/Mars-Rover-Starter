@@ -10,26 +10,41 @@ class Rover {
    };
    
    receiveMessage(Message) {
-      let name = Message.name
-      let commands = Message.commands
-
-      if (commands.indexOf(new Command('STATUS_CHECK'))) {
-         return {
-            message: name,
-            results: [
-               {
-                  completed: true,
-                  roverStatus: {mode: this.mode , generatorWatts: this.generatorWatts , position: this.position}}
-            ]
-         }
-      } else {
-         return {
-         message: name,
-         results: commands
+      
+      let roverObject = {message: Message.name};
+         return roverObject;
       }
-   }
+   };
 
-   }
-};
+   // reportStats() {
+   //    let stats = `${this.name} is ${this.age} years old and has a mass of ${this.mass} kg.`;
+   //    return stats;
+   // }
+            // message: name,
+            // results: [
+            //    {
+            //       completed: true,
+            //       roverStatus: {mode: this.mode , generatorWatts: this.generatorWatts , position: this.position}}
+            // ]
+         
+
+      //  if (commands.indexOf(new Command('MODE_CHANGE', 'LOW_POWER'))) {
+      //    return {
+      //       message: name,
+      //       results: [
+      //          {
+      //             completed: true,
+      //             roverStatus: {mode: 'LOW_POWER' , generatorWatts: this.generatorWatts , position: this.position}}
+      //       ]
+      //    }
+      // } else {
+      //    return {
+      //    message: name,
+      //    results: commands
+      // }
+   // }
+
+   // }
+
 
 module.exports = Rover;

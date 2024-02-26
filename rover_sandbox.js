@@ -11,20 +11,22 @@ class Rover {
    
    receiveMessage(Message) {
       let name = Message.name
-      let commands = Message.commands
-      return {
-         message: name,
-         results: commands
+      let roverObject = {message: name};
+         return roverObject;
       }
-
    }
-};
+
+   // reportStats() {
+   //    let stats = `${this.name} is ${this.age} years old and has a mass of ${this.mass} kg.`;
+   //    return stats;
+   // }
 
 
-let commandsTest = [new Command('TEST_COMMAND_ONE'), new Command('TEST_COMMAND_TWO')];
-        let messageTest = new Message('Test message with two commands', commandsTest);
-        let testRover = new Rover().receiveMessage(messageTest);
 
-        console.log(testRover);
+let commandsTest = [new Command('STATUS_CHECK')];
+let messageTest = new Message('STATUS_CHECK test', commandsTest);
+let testRover = new Rover(98382).receiveMessage(messageTest);
+
+console.log(testRover);
 
 module.exports = Rover;
