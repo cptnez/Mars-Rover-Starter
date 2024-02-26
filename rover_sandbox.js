@@ -11,14 +11,16 @@ class Rover {
    receiveMessage(Message) {
       
       let roverObject;
-
+   
        if(Message.commands.length == 2) {
          roverObject = {message: Message.name, results: [{}, {}]};
          return roverObject;
+      } else if(Message.commands.indexOf('STATUS_CHECK')) {
+         roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
       } else {
          roverObject = {message: Message.name, results: [{}]};
       }
-      return roverObject;
+         return roverObject;
    };
 
 };
@@ -30,8 +32,8 @@ class Rover {
 
 
 
-let commandsTest = [new Command('COMMAND_ONE'), new Command('COMMAND_TWO')];
-let messageTest = new Message('Two commands test', commandsTest);
+let commandsTest = [new Command('STATUS_CHECK')];
+let messageTest = new Message('Status check command test', commandsTest);
 let testRover = new Rover(98382).receiveMessage(messageTest);
 
 console.log(testRover);

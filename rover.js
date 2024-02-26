@@ -11,13 +11,16 @@ class Rover {
    receiveMessage(Message) {
       
       let roverObject;
+   
        if(Message.commands.length == 2) {
          roverObject = {message: Message.name, results: [{}, {}]};
          return roverObject;
+      } else if(Message.commands.indexOf('STATUS_CHECK')) {
+         roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
       } else {
          roverObject = {message: Message.name, results: [{}]};
       }
-      return roverObject;
+         return roverObject;
    };
 
 };
