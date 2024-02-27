@@ -12,14 +12,24 @@ class Rover {
       
       let roverObject;
    
-       if(Message.commands.length == 2) {
+       if (Message.commands.length == 2) {
          roverObject = {message: Message.name, results: [{}, {}]};
          return roverObject;
-      } else if(Message.commands.indexOf('STATUS_CHECK')) {
+      } 
+      
+       if (Message.commands.indexOf('STATUS_CHECK')) {
          roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
-      } else {
-         roverObject = {message: Message.name, results: [{}]};
+      } 
+      
+      if (Message.commands.indexOf('MODE_CHANGE' && 'LOW_POWER')) {
+         this.mode = 'LOW_POWER'
+         roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
       }
+      
+      
+      // else {
+      //    roverObject = {message: Message.name, results: [{}]};
+      // }
          return roverObject;
    };
 
