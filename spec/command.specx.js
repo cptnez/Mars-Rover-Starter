@@ -14,8 +14,8 @@ describe("Command class", function() {
 // Create a second Command test using “constructor sets command type” as the description.
 // This test checks that the constructor in the Command class correctly sets the commandType property in the new object.
   it('constructor sets command type', function () {
-    let constructorOne = new Command(1, 2);
-    expect(constructorOne.commandType).toBe(1);
+    let constructorOne = new Command('MODE_CHANGE', 2);
+    expect(constructorOne.commandType).toBe('MODE_CHANGE');
   })
 
 // TEST 3
@@ -23,7 +23,7 @@ describe("Command class", function() {
 // This test checks that the constructor correctly sets the value property in the new object.
 // You may not need to know a proper value in order to write this test.
  it('constructor sets a value passed in as the 2nd argument', function () {
-  let constructorTwo = new Command(1, 2);
+  let constructorTwo = new Command('MODE_CHANGE', 2);
     expect(constructorTwo.value).toBe(2);
  })
 

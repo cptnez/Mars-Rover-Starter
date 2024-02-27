@@ -9,25 +9,26 @@ class Rover {
    };
    
    receiveMessage(Message) {
-     
-      let roverObject;
-   
-       if (Message.commands.length == 2) {
-         roverObject = {message: Message.name, results: [{}, {}]};
-         return roverObject;
-      } 
       
-       if (Message.commands.indexOf('STATUS_CHECK')) {
-         roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
-      } 
-
-      if (Message.commands.indexOf('MODE_CHANGE' && 'LOW_POWER')) {
-         this.mode = 'LOW_POWER'
-         roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
+      let results = [];
+   
+      for(const item of Message.commands) {
+         if (item.commandType == 'STATUS_CHECK') {
+          results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
+         } 
       }
       
-      // if (Message.commands.indexOf('MOVE')) {
-      //    roverObject = {message: Message.name, results: [{completed: true}]};
+      let roverObject = {message: Message.name, results}
+    
+      
+      // if (Message.commands.indexOf('MODE_CHANGE' && 'LOW_POWER')) {
+      //    this.mode = 'LOW_POWER'
+      //    roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
+      // }
+      
+      
+      // else {
+      //    roverObject = {message: Message.name, results: [{}]};
       // }
          return roverObject;
    };
@@ -41,9 +42,9 @@ class Rover {
 
 
 
-let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER')];
-let messageTest = new Message('Mode change command test', commandsTest);
-let testRover = new Rover(98382).receiveMessage(messageTest);
+let commandsTest = [new Command('STATUS_CHECK')];
+let messageTest = new Message('Status check command test', commandsTest);
+let testRover = new Rover().receiveMessage(messageTest);
 
 console.log(testRover);
 

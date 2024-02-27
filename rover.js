@@ -10,21 +10,21 @@ class Rover {
    
    receiveMessage(Message) {
       
-      let roverObject;
+      let results = [];
    
-       if (Message.commands.length == 2) {
-         roverObject = {message: Message.name, results: [{}, {}]};
-         return roverObject;
-      } 
-      
-       if (Message.commands.indexOf('STATUS_CHECK')) {
-         roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
-      } 
-      
-      if (Message.commands.indexOf('MODE_CHANGE' && 'LOW_POWER')) {
-         this.mode = 'LOW_POWER'
-         roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
+      for(item of Message.commands) {
+         if (item.commandType == 'STATUS_CHECK') {
+          results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
+         } 
       }
+      
+      let roverObject = {message: Message.name, results}
+    
+      
+      // if (Message.commands.indexOf('MODE_CHANGE' && 'LOW_POWER')) {
+      //    this.mode = 'LOW_POWER'
+      //    roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
+      // }
       
       
       // else {

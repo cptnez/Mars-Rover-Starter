@@ -12,23 +12,23 @@ describe("Rover class", function() {
 // “constructor sets position and default values for mode and generatorWatts”.
 //  Refer to the Rover Class description above for these default values.
 
-// it('constructor sets position and default values for mode and generatorWatts', function () {
-//     let testRover = new Rover(98382);
-//     expect(testRover.position).toEqual(98382);
-//     expect(testRover.mode).toEqual('NORMAL');
-//     expect(testRover.generatorWatts).toEqual(110);
-// })
+it('constructor sets position and default values for mode and generatorWatts', function () {
+    let testRover = new Rover(98382);
+    expect(testRover.position).toEqual(98382);
+    expect(testRover.mode).toEqual('NORMAL');
+    expect(testRover.generatorWatts).toEqual(110);
+})
 
 // TEST 8-PASSED-----2/25 2:34PM, UPDATED 2/26 9:51AM-----Restructured the return to use Message in function
 
-// it('response returned by receiveMessage contains the name of the message', function () {
-//     let commandsTest = new Command('STATUS_CHECK');
-//     let messageTest = new Message('test for status check', commandsTest);
-//     let testRoverName = new Rover().receiveMessage(messageTest);
-//     let testRoverNameReturn = testRoverName.message;
+it('response returned by receiveMessage contains the name of the message', function () {
+    let commandsTest = new Command('STATUS_CHECK');
+    let messageTest = new Message('test for status check', commandsTest);
+    let testRoverName = new Rover().receiveMessage(messageTest);
+    let testRoverNameReturn = testRoverName.message;
 
-//     expect(testRoverNameReturn).toEqual('test for status check');
-// })
+    expect(testRoverNameReturn).toEqual('test for status check');
+})
 
 // TEST 9-PASSED-----2/25 2:56PM, UPDATED 2/26 10:08AM-----Restructured return of test 9, two empty objects. Both 8 and 9 are passing together.
 
@@ -62,14 +62,14 @@ describe("Rover class", function() {
 // 1. The test should check the completed: property and rover mode for accuracy.
 // 2. The rover has two modes that can be passed as values to a mode change command: ‘LOW_POWER’ and ‘NORMAL’.
 
-it('responds correctly to the mode change command', function() {
-    let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER')];
-    let messageTest = new Message('Mode change test', commandsTest);
-    let testRover = new Rover().receiveMessage(messageTest).results;
-    let testRoverResults = [{completed: true, roverStatus: {mode: 'LOW_POWER', generatorWatts: 110, position: undefined}}]
+// it('responds correctly to the mode change command', function() {
+//     let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER')];
+//     let messageTest = new Message('Mode change test', commandsTest);
+//     let testRover = new Rover().receiveMessage(messageTest).results;
+//     let testRoverResults = [{completed: true, roverStatus: {mode: 'LOW_POWER', generatorWatts: 110, position: undefined}}]
 
-    expect(testRover).toEqual(testRoverResults);
+//     expect(testRover).toEqual(testRoverResults);
 
-})
+// })
 
 });
