@@ -14,35 +14,23 @@ class Rover {
    
       for(const item of Message.commands) {
 
-         if (item == 'STATUS_CHECK') {
+         if (item.commandType === 'STATUS_CHECK') {
             results.push({completed: true})
-             } 
+             }
             //  else if (item.commandType === 'MODE_CHANGE' && 'LOW_POWER') {
             //    this.mode = 'LOW_POWER'
-            //    results.push({completed: true, mode: this.mode, generatorWatts: this.generatorWatts, position: this.position})
-            //  } else if (item.commandType === 'MODE_CHANGE' && 'LOW_POWER' && 'STATUS_CHECK') {
-            //    this.mode = 'LOW_POWER'
-            //    results.push({completed: true})
-            //    results.push({completed: true, mode: this.mode, generatorWatts: this.generatorWatts, position: this.position})
-            //  } 
-
-    
-      // if (Message.commands.indexOf('MODE_CHANGE' && 'LOW_POWER')) {
-      //    this.mode = 'LOW_POWER'
-      //    roverObject = {message: Message.name, results: [{completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}}]}
-      // }
-      
-      
-      // else {
-      //    roverObject = {message: Message.name, results: [{}]};
-      // }
-
+            //    results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
+         if (item.commandType === 'MODE_CHANGE' && 'LOW_POWER') {
+            this.mode = 'LOW_POWER'
+            results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
+             } 
+      }
+         let roverObject = {message: Message.name, results}
          
+         return roverObject;
    };
-   let roverObject = {message: Message.name, results}
 
-   return roverObject;
-};
+
 };
 
 

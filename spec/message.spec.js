@@ -25,11 +25,10 @@ it('constructor sets name', function () {
 
  it('contains a commands array passed into the constructor as the 2nd argument', function () {
   let commandsArray = [
-    new Command('MOVE', 4321),
+    new Command('MOVE'),
     new Command('STATUS_CHECK'),
     new Command('MODE_CHANGE', 'LOW_POWER'),
-    new Command('MOVE', 3579),
-    new Command('STATUS_CHECK')];
+    ];
   let messageObject = new Message('Test for commands', commandsArray);
   // expect(constructorTwo.commands).toBe(2);
   expect(messageObject.commands).toEqual(commandsArray);

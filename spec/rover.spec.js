@@ -32,16 +32,24 @@ it('response returned by receiveMessage contains the name of the message', funct
 
 // TEST 9-PASSED-----2/25 2:56PM, UPDATED 2/26 10:08AM-----Restructured return of test 9, two empty objects. Both 8 and 9 are passing together.
 
-    // it ('response returned by receiveMessage includes two results if two commands are sent in the message', function () {
-    //     let commandsTest = [new Command('TEST_COMMAND_ONE'), new Command('TEST_COMMAND_TWO')];
-    //     let messageTest = new Message('Test message with two commands', commandsTest);
-    //     let testRover = new Rover(98382).receiveMessage(messageTest);
-    //     let testRoverReturn = testRover.results;
-    //     let testRoverResults = [{}, {}]
+    it ('response returned by receiveMessage includes two results if two commands are sent in the message', function () {
+        let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+        let messageTest = new Message('Test message with two commands', commandsTest);
+        let testRover = new Rover(98382).receiveMessage(messageTest);
+        let testRoverReturn = testRover.results;
+        let testRoverResults = [
+            {
+               completed: true
+            },
+            {
+               completed: true, 
+               roverStatus: { mode: 'LOW_POWER', generatorWatts: 110, position: 98382 }
+            }
+         ]
 
-    //     expect(testRoverReturn).toEqual(testRoverResults)
+        expect(testRoverReturn).toEqual(testRoverResults)
  
-    // })
+    })
 
 // TEST 10-passed...need other tests to confirm. Completed: true? How?
 // 1. For the STATUS_CHECK command, receiveMessage(message).results includes a roverStatus object
