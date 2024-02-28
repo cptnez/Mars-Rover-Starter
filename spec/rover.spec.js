@@ -24,10 +24,10 @@ it('constructor sets position and default values for mode and generatorWatts', f
 it('response returned by receiveMessage contains the name of the message', function () {
     let commandsTest = new Command('STATUS_CHECK');
     let messageTest = new Message('test for status check', commandsTest);
-    let testRoverName = new Rover().receiveMessage(messageTest);
+    let testRoverName = new Rover(98382).receiveMessage(messageTest);
     let testRoverNameReturn = testRoverName.message;
 
-    expect(testRoverNameReturn).toEqual('test for status check');
+    expect(testRoverNameReturn).toBe('test for status check');
 })
 
 // TEST 9-PASSED-----2/25 2:56PM, UPDATED 2/26 10:08AM-----Restructured return of test 9, two empty objects. Both 8 and 9 are passing together.

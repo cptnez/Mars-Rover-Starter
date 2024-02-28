@@ -13,7 +13,7 @@
 //Every COMMAND object is a single instruction to be delivered to the rover
 
 class Command {
-   constructor(commandType, value=null) {
+   constructor(commandType, value) {
      this.commandType = commandType;
      if (!commandType) {
        throw Error("Command type required.");

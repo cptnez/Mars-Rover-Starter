@@ -14,8 +14,8 @@ describe("Message class", function() {
 //The description is “constructor sets name”.
 //The test confirms that the constructor in the Message class correctly sets the name property in a new message object.
 it('constructor sets name', function () {
-  let constructorOne = new Message('MODE_CHANGE', 2);
-  expect(constructorOne.name).toBe('MODE_CHANGE');
+  let constructorOne = new Message('Test for commands', 2);
+  expect(constructorOne.name).toBe('Test for commands');
 })
 
  // TEST 6----CHECK COMMAND OBJECT TO PASS
@@ -24,10 +24,15 @@ it('constructor sets name', function () {
  // contains the data passed in from the Message(name, commands) call.
 
  it('contains a commands array passed into the constructor as the 2nd argument', function () {
-  // let commandsArray = [new Command('STATUS_CHECK')];
-  let messageObject = new Message('MODE_CHANGE', [new Command('STATUS_CHECK')]);
+  let commandsArray = [
+    new Command('MOVE', 4321),
+    new Command('STATUS_CHECK'),
+    new Command('MODE_CHANGE', 'LOW_POWER'),
+    new Command('MOVE', 3579),
+    new Command('STATUS_CHECK')];
+  let messageObject = new Message('Test for commands', commandsArray);
   // expect(constructorTwo.commands).toBe(2);
-  expect(messageObject.commands).toEqual([new Command('STATUS_CHECK')]);
+  expect(messageObject.commands).toEqual(commandsArray);
  })
 
 });

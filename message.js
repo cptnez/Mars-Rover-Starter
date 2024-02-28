@@ -20,8 +20,14 @@ const Command = require("./command");
 
 class Message {
 
-  constructor(name, commands = [new Command('commandType')]) {
-    
+  constructor(name, commands) {
+    commands = [
+      new Command('MOVE', 4321),
+      new Command('STATUS_CHECK'),
+      new Command('MODE_CHANGE', 'LOW_POWER'),
+      new Command('MOVE', 3579),
+      new Command('STATUS_CHECK')
+   ];
     this.name = name;
     if (!name) {
       throw Error("Message name required.");
