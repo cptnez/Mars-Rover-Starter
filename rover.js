@@ -11,18 +11,21 @@ class Rover {
    receiveMessage(Message) {
       
       let results = [];
-   
-      for(const item of Message.commands) {
-
-         if (item.commandType === 'STATUS_CHECK') {
+      
+      // for(const item in Message.commands) {
+            // console.log(item);      
+            for( let i = 0; i < Message.commands.length; i++) {
+            
+            if (Message.commands[i].commandType === 'STATUS_CHECK') {
             results.push({completed: true})
              }
            
-         if (item.commandType === 'MODE_CHANGE' && 'LOW_POWER') {
+            if (Message.commands[i].commandType === 'MODE_CHANGE' && 'LOW_POWER') {
             this.mode = 'LOW_POWER'
             results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
              } 
-      }
+
+   }
          let roverObject = {message: Message.name, results}
          
          return roverObject;

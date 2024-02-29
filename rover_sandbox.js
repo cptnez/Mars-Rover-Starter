@@ -11,20 +11,26 @@ class Rover {
    receiveMessage(Message) {
       
       let results = [];
-   
-      for(const item of Message.commands) {
 
-         if (item.commandType === 'STATUS_CHECK') {
-            results.push({completed: true})
-             }
-            //  else if (item.commandType === 'MODE_CHANGE' && 'LOW_POWER') {
+      // for (let i = 0; i < messageObject.commands.length;){
+
+         for(const item of Message.commands) {
+            console.log(item);
+            if (item.commandType == 'STATUS_CHECK') {
+               results.push({completed: true})
+            } 
+            
+            // else if (item.commandType == 'MODE_CHANGE' && 'LOW_POWER') {
             //    this.mode = 'LOW_POWER'
             //    results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
-         if (item.commandType === 'MODE_CHANGE' && 'LOW_POWER') {
-            this.mode = 'LOW_POWER'
-            results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
-             } 
-      }
+            // }
+         // if (item.commandType === 'MODE_CHANGE' && 'LOW_POWER') {
+         //    this.mode = 'LOW_POWER'
+         //    results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
+         //     } 
+         // }
+
+   }
          let roverObject = {message: Message.name, results}
          
          return roverObject;
@@ -50,6 +56,9 @@ let testRover = new Rover().receiveMessage(messageTest);
 // let testRover = new Rover().receiveMessage(messageTest);
 
 
+// console.log(new Message('dkdkd', 'dkdkdkd'));
 console.log(testRover);
+
+// console.log()
 
 module.exports = Rover;

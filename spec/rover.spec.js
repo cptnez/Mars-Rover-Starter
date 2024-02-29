@@ -26,16 +26,17 @@ it('response returned by receiveMessage contains the name of the message', funct
     let messageTest = new Message('test for status check', commandsTest);
     let testRoverName = new Rover(98382).receiveMessage(messageTest);
     let testRoverNameReturn = testRoverName.message;
-
+    // console.log(testRoverName.message);
     expect(testRoverNameReturn).toBe('test for status check');
 })
 
 // TEST 9-PASSED-----2/25 2:56PM, UPDATED 2/26 10:08AM-----Restructured return of test 9, two empty objects. Both 8 and 9 are passing together.
 
     it ('response returned by receiveMessage includes two results if two commands are sent in the message', function () {
-        let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+        let commandsTest = [new Command('STATUS_CHECK'), new Command('MODE_CHANGE', 'LOW_POWER')];
         let messageTest = new Message('Test message with two commands', commandsTest);
         let testRover = new Rover(98382).receiveMessage(messageTest);
+        // console.log(testRover.results);
         let testRoverReturn = testRover.results;
         let testRoverResults = [
             {
@@ -45,8 +46,8 @@ it('response returned by receiveMessage contains the name of the message', funct
                completed: true, 
                roverStatus: { mode: 'LOW_POWER', generatorWatts: 110, position: 98382 }
             }
-         ]
-
+         ] 
+        //   console.log(testRover.results);
         expect(testRoverReturn).toEqual(testRoverResults)
  
     })
