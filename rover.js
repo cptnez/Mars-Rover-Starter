@@ -17,12 +17,12 @@ class Rover {
             for( let i = 0; i < Message.commands.length; i++) {
             
             if (Message.commands[i].commandType === 'STATUS_CHECK') {
-            results.push({completed: true})
+            results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
              }
            
             if (Message.commands[i].commandType === 'MODE_CHANGE' && 'LOW_POWER') {
-            this.mode = 'LOW_POWER'
-            results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
+            this.mode = 'LOW_POWER';
+            results.push({completed: true});
              } 
 
    }

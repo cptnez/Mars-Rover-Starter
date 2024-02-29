@@ -33,7 +33,7 @@ it('response returned by receiveMessage contains the name of the message', funct
 // TEST 9-PASSED-----2/25 2:56PM, UPDATED 2/26 10:08AM-----Restructured return of test 9, two empty objects. Both 8 and 9 are passing together.
 
     it ('response returned by receiveMessage includes two results if two commands are sent in the message', function () {
-        let commandsTest = [new Command('STATUS_CHECK'), new Command('MODE_CHANGE', 'LOW_POWER')];
+        let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
         let messageTest = new Message('Test message with two commands', commandsTest);
         let testRover = new Rover(98382).receiveMessage(messageTest);
         // console.log(testRover.results);
@@ -58,14 +58,15 @@ it('response returned by receiveMessage contains the name of the message', funct
 //    The test should check each of these for accuracy.
 // 2. See the Rover Command Types table for more details.
 
-// it('responds correctly to the status check command', function () {
-//     let commandsTest = [new Command('STATUS_CHECK')];
-//     let messageTest = new Message('Status check test', commandsTest);
-//     let testRover = new Rover(98382).receiveMessage(messageTest).results;
-//     let testRoverResults = [{completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 98382}}]
+it('responds correctly to the status check command', function () {
+    let commandsTest = [new Command('STATUS_CHECK')];
+    let messageTest = new Message('Status check test', commandsTest);
+    let testRover = new Rover(98382).receiveMessage(messageTest).results;
+    let testRoverResults = [{completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 98382}}]
+    console.log(testRover);
 
-//     expect(testRover).toEqual(testRoverResults)
-// }); 
+    expect(testRover).toEqual(testRoverResults)
+}); 
 
 // TEST 11-PASSED-----2/26 6:11PM
 // 1. The test should check the completed: property and rover mode for accuracy.
