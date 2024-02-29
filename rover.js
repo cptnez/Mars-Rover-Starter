@@ -16,24 +16,33 @@ class Rover {
             // console.log(item);      
             for( let i = 0; i < Message.commands.length; i++) {
             
-            if (Message.commands[i].commandType === 'STATUS_CHECK') {
-            results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
-             }
+               if (Message.commands[i].commandType === 'STATUS_CHECK') {
+                  results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
+               }
            
-            if (Message.commands[i].commandType === 'MODE_CHANGE' && 'LOW_POWER') {
-            this.mode = 'LOW_POWER';
-            results.push({completed: true});
-            } else if (Message.commands[i].commandType === 'MODE_CHANGE' && 'NORMAL') {
-               this.mode = 'NORMAL'
-               results.push({completed: true})
-            }
+               if (Message.commands[i].commandType === 'MODE_CHANGE' && 'LOW_POWER') {
+                  this.mode = 'LOW_POWER';
+                  results.push({completed: true});
+               } else if (Message.commands[i].commandType === 'MODE_CHANGE' && 'NORMAL') {
+                     this.mode = 'NORMAL'
+                     results.push({completed: true})
+               }
 
-   }
+               if (Message.commands[i].commandType === 'MOVE' && Number) {
+                  this.position = Number
+                  results.push({completed: true});
+      //    } else if (Message.commands[i].commandType === 'MOVE') {
+      //       results.push({completed: true})
+               }
+
+            
          let roverObject = {message: Message.name, results}
          
          return roverObject;
-   };
+            };
 
+
+   };
 
 };
 
