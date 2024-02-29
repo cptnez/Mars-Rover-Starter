@@ -23,7 +23,10 @@ class Rover {
             if (Message.commands[i].commandType === 'MODE_CHANGE' && 'LOW_POWER') {
             this.mode = 'LOW_POWER';
             results.push({completed: true});
-             } 
+            } else if (Message.commands[i].commandType === 'MODE_CHANGE' && 'NORMAL') {
+               this.mode = 'NORMAL'
+               results.push({completed: true})
+            }
 
    }
          let roverObject = {message: Message.name, results}
