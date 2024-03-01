@@ -73,15 +73,15 @@ it('responds correctly to the status check command', function () {
 // 2. The rover has two modes that can be passed as values to a mode change command: ‘LOW_POWER’ and ‘NORMAL’.
 
 it('responds correctly to the mode change command', function() {
+
+    let testRover = new Rover(4321, 'NORMAL', 110);
     let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER')];
     let messageTest = new Message('Mode change test', commandsTest);
-    let testRover = new Rover().receiveMessage(messageTest).results;
-    this.mode = 'LOW_POWER'
-    let testRoverResults = [{completed: true}]
+    let testRoverMessage = testRover.receiveMessage(messageTest);
+    let testRoverResults = testRoverMessage.results
     // console.log(testRover);
-
-    expect(testRover).toEqual(testRoverResults);
-
+    expect(testRoverResults).toEqual([{completed: true}]);
+    expect(testRover.mode).toEqual('LOW_POWER');
 });
 
 // TEST 12
