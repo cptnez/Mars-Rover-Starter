@@ -91,12 +91,13 @@ it('responds correctly to the mode change command', function() {
 
 it ('responds with a false completed value when attempting to move in LOW_POWER mode', function() {
     
-    this.mode = 'LOW_POWER'
+    let testRover = new Rover(4321);
+    testRover.mode = 'LOW_POWER'
     let commandsTest = [new Command('MOVE', 6000)];
     let messageTest = new Message('Low power false test', commandsTest);
-    let testRover = new Rover().receiveMessage(messageTest).results;
-    console.log(testRover);
-    expect(testRover).toEqual([{completed: false}])
+    let testRoverMessage = testRover.receiveMessage(messageTest).results;
+    // console.log(testRover);
+    expect(testRoverMessage).toEqual([{completed: false}])
 })
 
 
@@ -106,12 +107,19 @@ it ('responds with a false completed value when attempting to move in LOW_POWER 
 //1. A MOVE command will update the rover’s position with the position value in the command.
 
 it ('responds with the position for the move command', function () {
-    let commandsTest = [new Command('MOVE', 4321)];
+    // let commandsTest = [new Command('MOVE', 4321)];
+    // let messageTest = new Message('Move command test', commandsTest);
+    // let testRover = new Rover(1111).receiveMessage(messageTest);
+    // expect(testRover.postion).toEqual(4321);
+    let testRover = new Rover(4321);
+    testRover.mode = 'NORMAL'
+    let commandsTest = [new Command('MOVE', 6000)];
     let messageTest = new Message('Move command test', commandsTest);
-    let testRover = new Rover().receiveMessage(messageTest).results;
-    console.log(testRover.position);
-    expect(testRover).toEqual([{completed: true}]);
-    expect(testRover.roverStatus.postion).toEqual(6000);
+    testRover.receiveMessage(messageTest);
+    
+    expect(testRover.position).toEqual(6000);
+})
 });
 
-});
+
+

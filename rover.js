@@ -33,13 +33,11 @@ class Rover {
                   results.push(responseTrue)
                }
 
-               if (Message.commands[i].commandType === 'MOVE' && (this.mode ='LOW_POWER')) {
-                  results.push(responseFalse);
-               }
-
-               if (Message.commands[i].commandType === 'MOVE' && Number) {
-                  this.position = Number
+               if (Message.commands[i].commandType === 'MOVE' && this.mode === 'NORMAL') {
+                  this.position = Message.commands[i].value;
                   results.push(responseTrue);
+               } else if (Message.commands[i].commandType === 'MOVE' && this.mode === 'LOW_POWER') {
+                  results.push(responseFalse);
                }
 
                // testRover.position = 6000
@@ -47,9 +45,9 @@ class Rover {
                // expect(testRover).toEqual([{completed: true}]);
                // expect(testRover.postion).toEqual(6000);
             }
-            let roverObject = {message: Message.name, results}
+            let roverMessage = {message: Message.name, results}
             
-            return roverObject;
+            return roverMessage;
       };
    
    
