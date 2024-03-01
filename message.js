@@ -1,7 +1,6 @@
 const Command = require("./command");
 
 class Message {
-
   constructor(name, commands) {
     this.name = name;
     if (!name) {
