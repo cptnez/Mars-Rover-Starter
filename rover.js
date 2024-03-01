@@ -11,39 +11,48 @@ class Rover {
    receiveMessage(Message) {
       
       let results = [];
+
+      let responseTrue = {completed: true};
+      let responseFalse = {completed: false};
+
       
       // for(const item in Message.commands) {
             // console.log(item);      
             for( let i = 0; i < Message.commands.length; i++) {
             
                if (Message.commands[i].commandType === 'STATUS_CHECK') {
-                  results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
-               }
-           
+               let responseStatus = {completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}};
+               results.push(responseStatus)
+                }
+              
                if (Message.commands[i].commandType === 'MODE_CHANGE' && 'LOW_POWER') {
-                  this.mode = 'LOW_POWER';
-                  results.push({completed: true});
+               this.mode = 'LOW_POWER';
+               results.push(responseTrue);
                } else if (Message.commands[i].commandType === 'MODE_CHANGE' && 'NORMAL') {
-                     this.mode = 'NORMAL'
-                     results.push({completed: true})
+                  this.mode = 'NORMAL'
+                  results.push(responseTrue)
+               }
+
+               if (Message.commands[i].commandType === 'MOVE' && (this.mode ='LOW_POWER')) {
+                  results.push(responseFalse);
                }
 
                if (Message.commands[i].commandType === 'MOVE' && Number) {
                   this.position = Number
-                  results.push({completed: true});
-      //    } else if (Message.commands[i].commandType === 'MOVE') {
-      //       results.push({completed: true})
+                  results.push(responseTrue);
                }
 
+               // testRover.position = 6000
+               // console.log(testRover.position);
+               // expect(testRover).toEqual([{completed: true}]);
+               // expect(testRover.postion).toEqual(6000);
+            }
+            let roverObject = {message: Message.name, results}
             
-         let roverObject = {message: Message.name, results}
-         
-         return roverObject;
-            };
-
-
+            return roverObject;
+      };
+   
+   
    };
-
-};
-
-module.exports = Rover;
+   
+   module.exports = Rover;

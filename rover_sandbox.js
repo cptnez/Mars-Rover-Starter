@@ -11,43 +11,49 @@ class Rover {
    receiveMessage(Message) {
       
       let results = [];
-
-      // for (let i = 0; i < messageObject.commands.length;){
-
-         for(const item of Message.commands) {
-            console.log(item);
-            if (item.commandType == 'STATUS_CHECK') {
-               results.push({completed: true})
-            } 
+      
+      // for(const item in Message.commands) {
+            // console.log(item);      
+            for( let i = 0; i < Message.commands.length; i++) {
             
-            // else if (item.commandType == 'MODE_CHANGE' && 'LOW_POWER') {
-            //    this.mode = 'LOW_POWER'
-            //    results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
-            // }
-         // if (item.commandType === 'MODE_CHANGE' && 'LOW_POWER') {
-         //    this.mode = 'LOW_POWER'
-         //    results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
-         //     } 
-         // }
+               if (Message.commands[i].commandType == 'STATUS_CHECK') {
+                  results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
+               }
+           
+               if (Message.commands[i].commandType == 'MODE_CHANGE' && 'LOW_POWER') {
+                  this.mode = 'LOW_POWER';
+                  results.push({completed: true});
+               } else if (Message.commands[i].commandType == 'MODE_CHANGE' && 'NORMAL') {
+                     this.mode = 'NORMAL'
+                     results.push({completed: true})
+               }
 
-   }
+               if (Message.commands[i].commandType == 'MOVE') {
+                  // this.position = Number
+                  results.push({completed: true});
+
+               }
+
+            }
          let roverObject = {message: Message.name, results}
          
          return roverObject;
-   };
-
-
-};
+            };
 
 
 // STATUS_CHECK
-let commandsTest = [new Command('STATUS_CHECK')];
-let messageTest = new Message('Status check command test', commandsTest);
-let testRover = new Rover().receiveMessage(messageTest);
+// let commandsTest = [new Command('STATUS_CHECK')];
+// let messageTest = new Message('Status check command test', commandsTest);
+// let testRover = new Rover().receiveMessage(messageTest);
 
 // MODE_CHANGE, LOW_POWER
 // let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER')];
 // let messageTest = new Message('Mode change command test', commandsTest);
+// let testRover = new Rover().receiveMessage(messageTest);
+
+// (MODE_CHANGE, LOW_POWER), (STATUS_CHECK)
+// let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+// let messageTest = new Message('Two commands command test', commandsTest);
 // let testRover = new Rover().receiveMessage(messageTest);
 
 // (MODE_CHANGE, LOW_POWER), (STATUS_CHECK)

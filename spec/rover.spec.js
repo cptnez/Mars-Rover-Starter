@@ -21,36 +21,36 @@ it('constructor sets position and default values for mode and generatorWatts', f
 
 // TEST 8-PASSED-----2/25 2:34PM, UPDATED 2/26 9:51AM-----Restructured the return to use Message in function
 
-// it('response returned by receiveMessage contains the name of the message', function () {
-//     let commandsTest = new Command('STATUS_CHECK');
-//     let messageTest = new Message('test for status check', commandsTest);
-//     let testRoverName = new Rover().receiveMessage(messageTest);
-//     let testRoverNameReturn = testRoverName.message;
-//     // console.log(testRoverName.message);
-//     expect(testRoverNameReturn).toBe('test for status check');
-// })
+it('response returned by receiveMessage contains the name of the message', function () {
+    let commandsTest = new Command('STATUS_CHECK');
+    let messageTest = new Message('test for status check', commandsTest);
+    let testRoverName = new Rover().receiveMessage(messageTest);
+    let testRoverNameReturn = testRoverName.message;
+    // console.log(testRoverName.message);
+    expect(testRoverNameReturn).toBe('test for status check');
+})
 
 // TEST 9-PASSED-----2/25 2:56PM, UPDATED 2/26 10:08AM-----Restructured return of test 9, two empty objects. Both 8 and 9 are passing together.
 
-    // it ('response returned by receiveMessage includes two results if two commands are sent in the message', function () {
-    //     let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-    //     let messageTest = new Message('Test message with two commands', commandsTest);
-    //     let testRover = new Rover().receiveMessage(messageTest);
-    //     // console.log(testRover.results);
-    //     let testRoverReturn = testRover.results;
-    //     let testRoverResults = [
-    //         {
-    //            completed: true
-    //         },
-    //         {
-    //            completed: true, 
-    //            roverStatus: { mode: 'LOW_POWER', generatorWatts: 110, position: this.position }
-    //         }
-    //      ] 
-    //     //   console.log(testRover.results);
-    //     expect(testRoverReturn).toEqual(testRoverResults)
+    it ('response returned by receiveMessage includes two results if two commands are sent in the message', function () {
+        let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+        let messageTest = new Message('Test message with two commands', commandsTest);
+        let testRover = new Rover().receiveMessage(messageTest);
+        // console.log(testRover.results);
+        let testRoverReturn = testRover.results;
+        let testRoverResults = [
+            {
+               completed: true
+            },
+            {
+               completed: true, 
+               roverStatus: { mode: 'LOW_POWER', generatorWatts: 110, position: this.position }
+            }
+         ] 
+        //   console.log(testRover.results);
+        expect(testRoverReturn).toEqual(testRoverResults)
  
-    // })
+    })
 
 // TEST 10-passed...need other tests to confirm. Completed: true? How?
 // 1. For the STATUS_CHECK command, receiveMessage(message).results includes a roverStatus object
@@ -89,14 +89,15 @@ it('responds correctly to the mode change command', function() {
 // 1. The test should check the completed property for accuracy and confirm that the rover’s position did not change.
 // 2. Use the Rover Modes table for guidance on how to handle move commands in different modes.
 
-// it ('responds with a false completed value when attempting to move in LOW_POWER mode', function() {
+it ('responds with a false completed value when attempting to move in LOW_POWER mode', function() {
     
-//     let commandsTest = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 6000)];
-//     let messageTest = new Message('Low power false test', commandsTest);
-//     let testRover = new Rover(98382).receiveMessage(messageTest).results;
-//     // console.log(testRover);
-//     expect(testRover).toEqual([{completed: false}])
-// })
+    this.mode = 'LOW_POWER'
+    let commandsTest = [new Command('MOVE', 6000)];
+    let messageTest = new Message('Low power false test', commandsTest);
+    let testRover = new Rover().receiveMessage(messageTest).results;
+    console.log(testRover);
+    expect(testRover).toEqual([{completed: false}])
+})
 
 
 
@@ -105,12 +106,12 @@ it('responds correctly to the mode change command', function() {
 //1. A MOVE command will update the rover’s position with the position value in the command.
 
 it ('responds with the position for the move command', function () {
-    let commandsTest = [new Command('MOVE', 6000), new Command('STATUS_CHECK')];
+    let commandsTest = [new Command('MOVE', 4321)];
     let messageTest = new Message('Move command test', commandsTest);
     let testRover = new Rover().receiveMessage(messageTest).results;
-    this.position = 6000;
-    console.log(testRover);
-    expect(testRover).toEqual([{completed: true}])
+    console.log(testRover.position);
+    expect(testRover).toEqual([{completed: true}]);
+    expect(testRover.roverStatus.postion).toEqual(6000);
 });
 
 });
